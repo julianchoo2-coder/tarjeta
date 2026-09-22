@@ -507,22 +507,22 @@
             }
         }
 
-        // Efecto Tilt 3D
-        const tiltCard = document.getElementById('tiltCard');
-        document.addEventListener('mousemove', (e) => {
-            if (document.getElementById('mainCardSection').classList.contains('hidden')) return;
-            const rect = tiltCard.getBoundingClientRect();
-            const x = e.clientX - rect.left - rect.width / 2;
-            const y = e.clientY - rect.top - rect.height / 2;
-            const rotateX = (-y / 25).toFixed(2);
-            const rotateY = (x / 25).toFixed(2);
-            tiltCard.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
-        });
+       // Efecto Tilt 3D
+const tiltCard = document.getElementById('tiltCard');
+document.addEventListener('mousemove', (e) => {
+    if (document.getElementById('mainCardSection').classList.contains('hidden')) return;
+    const rect = tiltCard.getBoundingClientRect();
+    const x = e.clientX - rect.left - rect.width / 2;
+    const y = e.clientY - rect.top - rect.height / 2;
+    
+    // Aumentamos el divisor de 25 a 60 para disminuir la inclinación
+    const rotateX = (-y / 60).toFixed(2);
+    const rotateY = (x / 60).toFixed(2);
+    
+    tiltCard.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
+});
 
-        document.addEventListener('mouseleave', () => {
-            tiltCard.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';
-        });
-
+    
         // Swipe (Táctil)
         let touchStartX = 0;
         let touchEndX = 0;
